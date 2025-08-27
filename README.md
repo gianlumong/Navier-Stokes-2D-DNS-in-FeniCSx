@@ -1,6 +1,6 @@
 # DNS_Simulation_FeniCSx
 
-Python code for 2D incompressible Navier-Stokes simulations using the FEniCSx framework and the Gmsh Python API. 
+Python scripts for 2D incompressible Navier–Stokes simulations using the FeniCSx framework and the Gmsh Python API.
 
 ## Description
 
