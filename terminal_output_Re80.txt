@@ -1,9 +1,0 @@
-Questo è il file che conterrà i vari output del terminale.
-Quindi, conterrà tutte le info utili riguardo a com'é andata l'esecuzione del codice.
-
-Variabili importanti relative all'esecuzione: 
-            Re: 80
-            dt: 0.01
-            tol: 1e-08
-            
-
