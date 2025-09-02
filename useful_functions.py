@@ -8,7 +8,7 @@ import numpy as np
 
 
 #-------Plot the mesh to make sure everything is ok-----------#
-def plt_mesh(domain, save_as_png: bool =False):
+def save_mesh(domain, save_as_png: bool =True):
     tdim=domain.topology.dim # topological dimension of the domain (will be 2, since we have a 2D domain)
     fdim=tdim-1 # dimension of the facets (for 2D mesh the facets are segments, so 1D)
     print('tdim= ',tdim)

@@ -13,7 +13,7 @@ from xCFL_number import CFLnumber
 assert MPI.COMM_WORLD.size == 1, "This example should only be run with 1 MPI process"
 ############################################## DEFINING THE MESH ##############################################
 import gmsh
-gmsh.initialize()  #To initialize the Gmsh environment! This must be done before any other Gmsh call!!!!!
+gmsh.initialize()  # Initialize the Gmsh environment! This must be done before any other Gmsh call!!!!!
 L = 27.0 # Original L=2.2
 H = 10.0 # Original H=0.41
 c_x = 9.0 # Original c_x=0.2
@@ -115,8 +115,8 @@ if mesh_comm.rank == model_rank:
 mesh, _, ft = gmshio.model_to_mesh(gmsh.model, mesh_comm, model_rank, gdim=gdim)
 ft.name = "Facet markers"
 
-from  useful_functions import plt_mesh
-# plt_mesh(mesh,save_as_png=True) # Plot or save 
+from  useful_functions import save_mesh
+# save_mesh(mesh) # Plot or save 
 
 
 
@@ -139,12 +139,12 @@ tol=1e-8 # I can use as tol one of those values: 1e-5; 1e-8 or even 1e-15?
 tot_save= 5000 # we save every -tot_save- steps
 
 step=0
-step_init = 2000 #(step at which the calculation of u_mean, p_mean and f starts)
+step_init = 2000 # step at which the calculation of u_mean, p_mean and f starts 
 save_first_n_steps = 150 # Indicates the first n initial steps for which we will save the solution
 step_final = 100000000 # 100 million
 
-# Create the file.txt that will contain the outputs that would normally be written to the terminal (I will need it especially
-# when I run the code remotely)
+# Create the file.txt that will contain the outputs that would normally be written to the terminal (needed especially
+# if I run the code remotely)
 terminal_output_name=f'terminal_output_Re{Re}.txt' 
 with open(terminal_output_name, "w") as txt:
     txt.write("This is the file that will contain the various outputs of the terminal.\n") #\n serves to go to the next line
