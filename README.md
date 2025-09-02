@@ -34,8 +34,3 @@ This repository contains scripts to simulate 2D incompressible flows around obst
 - tqdm
 - numpy
 - adios4dolfinx
-
-Install dependencies via:
-
-```bash
-pip install numpy mpi4py petsc4py basix dolfinx gmsh tqdm adios4dolfinx
