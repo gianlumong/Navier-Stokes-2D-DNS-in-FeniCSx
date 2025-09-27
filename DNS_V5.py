@@ -241,12 +241,12 @@ from dolfinx.fem.petsc import assemble_matrix, assemble_vector, apply_lifting, c
 from dolfinx.fem import Constant
 
 
-k=Constant(mesh,PETSc.ScalarType(dt)) # time-step
+delta_t=Constant(mesh,PETSc.ScalarType(dt)) # time-step
 f_zero= Constant(mesh, PETSc.ScalarType((0, 0))) # this should be used only at the very first step!!!
 
-F1=(1/k)*inner(u-u0,v)*dx 
+F1=(1/delta_t)*inner(u-u0,v)*dx 
 F1+=inner(grad(u0) * u0, v) * dx # inner(dot(u0,nabla_grad(u0)),v)*dx
-F1+=nu*inner(grad(u),grad(v))*dx
+F1+=nu*inner(grad(u),grad(v))*dx # (nu=1/Re)
 F1-=inner(f_zero,v)*dx
 
 # Let's defining the classical form: a(u,v)=L(v)
@@ -261,7 +261,7 @@ b1 = create_vector(L1)
 #Step 2 
 #caluclation of the new pressure (p_n) (by using u*)
 a2=inner(grad(p),grad(q))*dx 
-L2=-(1/k)*div(u1)*q*dx #We are not using inner or dot (since both div(u1) and q are scalars!)
+L2=-(1/delta_t)*div(u1)*q*dx #We are not using inner or dot (since both div(u1) and q are scalars!)
 
 a2=form(a2)
 L2=form(L2)
@@ -274,7 +274,7 @@ b2 = create_vector(L2)
 #Step 3 
 #calculation of the new velocity (u_n) (by using u* and p_n)
 a3=inner(u,v)*dx
-L3=inner(u1,v)*dx - k*inner(grad(p1),v)*dx
+L3=inner(u1,v)*dx - delta_t*inner(grad(p1),v)*dx
 
 a3=form(a3)
 L3=form(L3)
